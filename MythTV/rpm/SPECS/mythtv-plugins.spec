@@ -76,12 +76,16 @@ BuildRequires:  libavc1394-devel
 BuildRequires:  libcrystalhd-devel
 BuildRequires:  libiec61883-devel
 BuildRequires:  libogg-devel
+%if 0%{?fedora}
 BuildRequires:  libomxil-bellagio-devel
+%endif
 BuildRequires:  libraw1394-devel
 BuildRequires:  libtheora-devel
 BuildRequires:  libva-devel
 BuildRequires:  libvdpau-devel
+%if 0%{?fedora}
 BuildRequires:  libvpx-devel
+%endif
 BuildRequires:  libXinerama-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  libXrandr-devel
@@ -209,6 +213,9 @@ popd
 ################################################################################
 
 %changelog
+
+* Sun Oct 21 2018 JP
+- omit omx and libvpx if not fedora: COPR vpx breaks KDE in el7
 
 * Wed May 09 2018 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 29.0
 - Rework for managed rebuilds

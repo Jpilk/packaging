@@ -63,7 +63,9 @@ BuildRequires:  qt5-qtwebkit-devel
 BuildRequires:  freetype-devel
 BuildRequires:  mariadb-devel
 BuildRequires:  libcec-devel
+%if 0%{?fedora}
 BuildRequires:  libvpx-devel
+%endif
 BuildRequires:  lm_sensors-devel
 BuildRequires:  lirc-devel
 BuildRequires:  nasm, yasm-devel
@@ -362,8 +364,8 @@ Summary:        Common components needed by multiple other MythTV components
 
 Requires(pre):  shadow-utils
 Requires(pre):  mythtv-filesystem       = %{version}-%{release}
-Requires:       google-droid-sans-mono-fonts
-Requires:       google-droid-sans-fonts
+# Requires:       google-droid-sans-mono-fonts
+# Requires:       google-droid-sans-fonts
 Requires:       perl(Date::Manip)
 Requires:       perl(DateTime::Format::ISO8601)
 Requires:       perl(Image::Size)
@@ -494,7 +496,11 @@ pushd mythtv
         --enable-libx264                            \
         --enable-libx265                            \
         --enable-libxvid                            \
-        --enable-libvpx                             \
+        %if 0%{?fedora}
+        --enable-libvpx   \
+        %else
+        --disable-libvpx  \
+        %endif
         --disable-mythlogserver
 
     make %{?_smp_mflags}
@@ -669,6 +675,7 @@ exit 0
 %{_bindir}/mythbackend
 %{_bindir}/mythfilldatabase
 %{_bindir}/mythfilerecorder
+%{_bindir}/mythexternrecorder
 %{_bindir}/mythjobqueue
 %{_bindir}/mythmediaserver
 %{_bindir}/mythreplex
@@ -767,6 +774,12 @@ exit 0
 
 
 %changelog
+
+* Sun Oct 21 2018 JP
+-omit libvpx if not fedora:  COPR version breaks KDE in el7
+
+* Sat Oct 20 2018 JP
+- omit fonts, add mythexternrecorder
 
 * Wed May 09 2018 Gary Buhrmaster <gary.buhrmaster@gmail.com> - 29.0
 - Rework for managed rebuilds
