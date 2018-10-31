@@ -36,7 +36,10 @@ License:        GPLv2+ and LGPLv2+ and LGPLv2 and (GPLv2 or QPL) and (GPLv2+ or 
 ################################################################################
 
 # Source based on commit hash
-Source0:        https://github.com/MythTV/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
+
+
+# Source0:        https://github.com/MythTV/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
+Source0:        https://github.com/Jpilk/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
 
 Source200:      mythtv-mythbackend.service
 Source201:      mythtv-99-mythbackend.rules
@@ -774,6 +777,8 @@ exit 0
 
 
 %changelog
+* Wed Oct 31 2018
+- use Source0:        https://github.com/Jpilk/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
 
 * Sun Oct 21 2018 JP
 -omit libvpx if not fedora:  COPR version breaks KDE in el7
