@@ -36,8 +36,8 @@ Release:        100%{?dist}
 License:        GPLv2+ and LGPLv2+ and LGPLv2 and (GPLv2 or QPL) and (GPLv2+ or LGPLv2+)
 
 # Plugins are now in the mythtv source repo
-# Source0:        https://github.com/MythTV/mythtv/archive/%{commit}/mythtv-%{commit}.tar.gz
-Source0:        https://github.com/Jpilk/mythtv/archive/%{commit}/mythtv-%{commit}.tar.gz
+
+Source0:        https://github.com/MythTV/mythtv/archive/%{commit}/mythtv-%{commit}.tar.gz
 
 BuildRequires:  mythtv-devel              = %{version}-%{release}
 BuildRequires:  python-MythTV             = %{version}-%{release}
@@ -214,8 +214,11 @@ popd
 ################################################################################
 
 %changelog
+* Fri Nov 02 2018 JP
+- go back to MythTV base
+
 * Wed Oct 31 2018 JP
-- use Source0:        https://github.com/MythTV/mythtv/archive/%{commit}/mythtv-%{commit}.tar.gz
+- use github fork as Source0 instead of MythTV base 
 
 * Sun Oct 21 2018 JP
 - omit omx and libvpx if not fedora: COPR vpx breaks KDE in el7

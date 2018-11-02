@@ -37,9 +37,12 @@ License:        GPLv2+ and LGPLv2+ and LGPLv2 and (GPLv2 or QPL) and (GPLv2+ or 
 
 # Source based on commit hash
 
+# Use a fork in the hope of being able to apply patches after a fork sync
 
-# Source0:        https://github.com/MythTV/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
-Source0:        https://github.com/Jpilk/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
+Source0:        https://github.com/MythTV/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
+
+# The original had  https://github.com/MythTV/ instead of https://github.com/Jpilk/
+# but just commenting the line out give rpmbuild warnings about expanded macros in comments
 
 Source200:      mythtv-mythbackend.service
 Source201:      mythtv-99-mythbackend.rules
@@ -777,8 +780,11 @@ exit 0
 
 
 %changelog
-* Wed Oct 31 2018
-- use Source0:        https://github.com/Jpilk/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
+* Fri Nov 02 2018 JP
+- go back to MythTV base
+
+* Wed Oct 31 2018  JP
+- use the https://github.com/Jpilk/ fork instead of MythTV base
 
 * Sun Oct 21 2018 JP
 -omit libvpx if not fedora:  COPR version breaks KDE in el7
